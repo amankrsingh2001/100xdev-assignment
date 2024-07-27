@@ -1,9 +1,9 @@
 const { Router } = require("express");
 const adminMiddleware = require("../middleware/admin");
-const { Admin } = require("../../03-mongo/db");
 const router = Router();
 const Jwt = require('jsonwebtoken');
-const { JWT_SERCET } = require("../secret");
+const { JWT_SECRET } = require("../secret");
+const { Admin, User, Course } = require("../db");
 
 
 // Admin Routes
@@ -15,8 +15,7 @@ router.post('/signup', async (req, res) => {
         await Admin.create({
             username:username,
             password:password
-        }) 
-        console.log("req sent successfully")
+        })
         res.status(200).json({msg:"Admin created Successfully"})
     
 });
@@ -32,7 +31,7 @@ router.post('/signin', async (req, res) => {
     if(isValidated){
         const token =  Jwt.sign({
             username
-        },JWT_SERCET)
+        },JWT_SECRET)
         res.json({token})
     }else{
         res.status(411).json({msg:"Incorrect email and password"})
@@ -41,12 +40,26 @@ router.post('/signin', async (req, res) => {
    
 });
 
-router.post('/courses', adminMiddleware, (req, res) => {
-    // Implement course creation logic
+router.post('/courses', adminMiddleware, async (req, res) => {
+    const title = req.body.title;
+    const description = req.body.description;
+    const price = req.body.price;
+    const imageLink = req.body.imageLink;
+
+
+    await Course.create({
+        title,
+        description,
+        price,
+        imageLink
+    })
+    res.status(200).json({msg:'Data entred Successfully'});
+
 });
 
-router.get('/courses', adminMiddleware, (req, res) => {
-    // Implement fetching all courses logic
+router.get('/courses', adminMiddleware, async (req, res) => {
+    const allCourses = await Course.find({});
+    res.status(200).json({courses:allCourses});
 });
 
 module.exports = router;

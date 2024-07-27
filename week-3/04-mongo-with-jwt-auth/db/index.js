@@ -2,10 +2,9 @@ const mongoose = require('mongoose');
 
 // Connect to MongoDB
 
-    mongoose.connect('mongodb+srv://amandev:amankrsingh@cluster0.yff37w4.mongodb.net/authapp').then(()=>{
-        console.log('Db connected from index 2')
-    })
 
+ mongoose.connect('mongodb+srv://amandev:amankrsingh@cluster0.yff37w4.mongodb.net/authzapp')
+ .then(()=>{ console.log('Db connected from index 2')})
 
 
 // Define schemas
@@ -40,4 +39,3 @@ module.exports = {
     User,
     Course
 }
-module.exports ={dbconnect}
