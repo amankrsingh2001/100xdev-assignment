@@ -1,7 +1,8 @@
 
 
 const Card = ({data})=>{
-    const value = data.Interest
+    const value = data.interest
+  
 
 
     return <div className="h-80 w-72 m-5 p-4 drop-shadow-xl bg-slate-200 rounded-md"> 
