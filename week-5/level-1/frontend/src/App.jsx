@@ -10,7 +10,7 @@ const App = ()=>{
   const fetchData = async()=>{
     const response  = await axios.get('http://localhost:8080/home');
     setdata(response.data.card);
-    console.log(response.data.card)
+
 
   }
   useEffect(()=>{
@@ -19,12 +19,13 @@ const App = ()=>{
 
 
   return<div >
-    <div className="flex m-5">
+      <New/>
+    <div className="flex flex-wrap m-5">
         {
         data.map((data)=>{return <Card key={data._id} data={data} />})
         }
     </div>
-    <New/>
+   
 
   </div>
 }

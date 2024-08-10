@@ -12,13 +12,14 @@ const getCard = async(req,res)=>{
 }
 
 const newUser  = async(req,res)=>{
+       const {name,description,interest,linkedIn,twitter} = req.body.newData
     try {
         const newCard = await User.create({
-            name:req.body.name,
-            description:req.body.description,
-            interest:req.body.interest,
-            linkedIn:req.body.linkedIn,
-            twitter:req.body.twitter
+            name:name,
+            description:description,
+            interest:interest,
+            linkedIn:linkedIn,
+            twitter:twitter
         })
         return res.status(200).json({msg:"Card Created"});
     } catch (error) {
