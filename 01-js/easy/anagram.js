@@ -7,12 +7,15 @@
 
 
 function isAnagram(str1, str2) {
-    let arr = [];
-    let value1 = str1.toLowerCase()
-    let value2 = str2.toLowerCase()
-    for(let i =0;i<value1.length;i++){
-      arr[value1[i]-'a']++;
+   let value1 =  str1.toLowerCase().split('').sort().join()
+   let value2 =  str2.toLowerCase().split('').sort().join()
+
+    for(let i = 0;i<value1.length;i++){
+      if(value1[i]!=value2[i]){
+        return false;
+      }
     }
+    return true;
 }
 
 module.exports = isAnagram;

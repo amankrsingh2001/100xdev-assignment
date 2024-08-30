@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios"
 
-const New = () =>{
+const New = ({setUserAdded}) =>{
 
         const [data ,setData] = useState({
             name:"",
@@ -17,6 +17,7 @@ const New = () =>{
             const interest = data.interest.split(','); 
             const newData = {...data,interest:interest}
             const sendData = await axios.post('http://localhost:8080/home/addUser',{newData})
+            setUserAdded(prev=>!prev)
         }
 
         const handleChange = (e) => {

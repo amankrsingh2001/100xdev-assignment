@@ -2,14 +2,13 @@
 
 const Card = ({data})=>{
     const value = data.interest
-  console.log(value,"Data from card")
 
 
     return <div className=" w-72 h-[350px] m-5  drop-shadow-xl bg-slate-200 rounded-md relative"> 
         <h1 className="text-bold font-bold text-center p-2 mt-2">{data.name}</h1>
         <p className="font-light text-center p-2">{data.description}</p>
         <h3 className="text-center pt-2 font-medium p-2">Interest</h3>
-            <div className="flex flex-wrap justify-center ">
+            <div className="flex flex-wrap justify-center">
           
              {
              value.map((it,index)=>{
